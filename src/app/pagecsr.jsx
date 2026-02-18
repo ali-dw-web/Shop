@@ -206,7 +206,7 @@ export default function Main() {
             <div ref={blur} className='w-[100%] hidden h-[100%] bg-[black]/70 fixed top-0 right-0 z-[10000000]'></div>
             <div ref={error} className='w-[250px] opacity-0 duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#f90c4c]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-300px] text-[18px] text-[black]'>Out of Stock</div>
             <div ref={error2} className='min-w-[250px] px-3 opacity-0 duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#f90c4c]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-300px] text-[18px] text-[black]'>It is already Selected</div>
-            <div ref={error3} className='min-w-[250px] px-3 opacity-0 duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#0be00b]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-300px] text-[18px] text-[black]'>Added to the whishlist</div>
+            <div ref={error3} className='min-w-[250px] px-3 opacity-0 duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#0be00b]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-300px] text-[18px] text-[black]'>Added to the wishlist</div>
             <div ref={wishlistMenu} className=' duration-300 h-[100%] w-[350px]  bg-[white] fixed top-0 right-[-400px]  z-[10000400]'>
                 <div onClick={removeWishList} className='w-[45px] h-[20px] flex justify-center items-center text-[black] icofont-close absolute top-[10px] right-[10px]'></div>
                 <div className='w-[100%] h-[40px] pl-3.5 flex justify-start items-center font-[600]  text-[16px] text-[#313b50]'>My WishList</div>
