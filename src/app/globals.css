@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Poppins', sans-serif;
+  background-color: #f1f4f7;
+
+
+}
+
+.animation {
+  animation: slightMovement 5s infinite alternate;
+}
+
+@keyframes slightMovement {
+  from {
+    rotate: -20deg;
+  }
+
+  to {
+    rotate: 20deg;
+  }
+}
+
+.scroll-width-none {
+  scrollbar-width: none;
+}
+
+.drag-box {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: grab;
+}
+
+.drag-box:active {
+  cursor: grabbing;
+}
+
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
+.curved-rectangle {
+  width: 300px;
+  height: 200px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 20px 20px 60px 60px / 20px 20px 40px 40px;
+  
+}
+.heig{
+  height: 150px;
+}
+.scroll23{
+  scrollbar-width : thin
+}
