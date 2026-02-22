@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Modern Shop Website
 
-## Getting Started
+> A full-featured e-commerce platform built with **Next.js**, **React**, and **Tailwind CSS**.  
+> Browse products, manage orders, and enjoy a seamless shopping experience across all devices.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 🛍 Browse, search, and filter products easily    
+- 📦 Checkout system with order preview  
+- 🎨 Fully responsive and modern UI design
+- wishList for the next visit
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<img width="1366" height="633" alt="Screenshot (37)" src="https://github.com/user-attachments/assets/f7f8ae57-90c2-4ec4-8751-014893d72ed0" />
 
-## Learn More
+## 🔍 Item Details
 
-To learn more about Next.js, take a look at the following resources:
+Each product or room on the platform is interactive:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Click on any item to view **detailed information** including description, features, and pricing.  
+- Easily check availability, specifications, reviewa , and images without leaving the page.  
+- Provides a smooth and intuitive experience for users to explore all options before making a purchase or reservation.
+<img width="1366" height="629" alt="Screenshot (41)" src="https://github.com/user-attachments/assets/b6319095-e12d-4254-aea4-512994327058" />
