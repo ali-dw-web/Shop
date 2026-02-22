@@ -40,4 +40,30 @@ Each product or room on the platform is interactive:
 - Provides a **clear overview** of total items, prices, and order summary before proceeding to payment.
 - <img width="1366" height="645" alt="Screenshot (43)" src="https://github.com/user-attachments/assets/57e165f3-d79c-4702-af20-7f9b94feafc2" />
 
+## ⭐ Wishlist (Favorites)
+
+- Users can **add products or rooms to their Wishlist** to save items for later.  
+- All Wishlist data is **stored in Local Storage**,  
+- Provides a **quick way to access favorite items** without navigating through the entire section  
+- Supports **adding, removing, and viewing items** easily, enhancing the shopping experience.
+- <img width="1366" height="637" alt="Screenshot (45)" src="https://github.com/user-attachments/assets/a51a845f-88cd-4a4c-af7e-30075bcc1ebb" />
+
+## 🛠 Technology & Live Demo
+
+This project is built with modern and powerful technologies:
+
+- ⚛️ **React** –  
+- ⬆️ **Next.js** – 
+- 🗄 **Zustand** – 
+- 💾 **Local Storage** –   
+- 📱 **Responsive Design** –
+
+---
+
+## 🌍 Live Demo
+
+Check out the live version of the project here:  
+🔗 [View Live Demo](https://shop-ochre-six-70.vercel.app/)
+
+
 
