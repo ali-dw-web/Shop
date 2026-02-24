@@ -1,3 +1,10 @@
+## 🌍 Live Demo
+
+Check out the live version of the project here:  
+🔗 [View Live Demo](https://shop-ochre-six-70.vercel.app/)
+
+
+
 # 🛒 Modern Shop Website
 
 > A full-featured e-commerce platform built with **Next.js**, **React**, and **Tailwind CSS**.  
@@ -59,11 +66,6 @@ This project is built with modern and powerful technologies:
 - 📱 **Responsive Design** –
 
 ---
-
-## 🌍 Live Demo
-
-Check out the live version of the project here:  
-🔗 [View Live Demo](https://shop-ochre-six-70.vercel.app/)
 
 
 
