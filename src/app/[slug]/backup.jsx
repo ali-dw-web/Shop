@@ -181,9 +181,9 @@ export default function Backup({ id }) {
             }, 3000)
             gmail.style.border = '1px solid red'
         }
-        if ((name.value !== null || name.value !== '')
-            && (gmail.value !== null || gmail.value !== '')
-            && (review.value !== null || review.value !== '')
+        if ((name.value !== null && name.value !== '')
+            && (gmail.value !== null && gmail.value !== '')
+            && (review.value !== null && review.value !== '')
             && (gmail.value.search(/@gmail\.com$/) !== -1)) {
             const exist = reviewg?.some((s) => s.code == code && s.gmail == gmail.value)
             if (exist == true) {
