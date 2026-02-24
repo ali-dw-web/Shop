@@ -8,7 +8,7 @@ export default function Backup({ id }) {
     const [data, setData] = useState([])
     let num = parseInt(id.slug)
     const [pagination, setPagination] = useState(0)
-    const [rating, setRating] = useState(0)
+    const [rating, setRating] = useState(1)
     const [related, setRelated] = useState([])
     const error = useRef()
     const sizeManagement = useRef([])
@@ -17,9 +17,19 @@ export default function Backup({ id }) {
     const error2 = useRef()
     const error3 = useRef()
     const error4 = useRef()
+    const error5 = useRef()
+    const error6 = useRef()
+    const error7 = useRef()
     const loading = useRef()
+    const [reviewg, setReviewg] = useState([])
 
     useEffect(() => {
+        fetch('https://699dd26283e60a406a478565.mockapi.io/ReviewShop')
+            .then(res => res.json())
+            .then(val => {
+                setReviewg(val)
+
+            })
         sizeManagement.current.map((val) => {
             val.addEventListener('click', (e) => {
                 sizeManagement.current.map((val) => {
@@ -114,10 +124,10 @@ export default function Backup({ id }) {
                 error4.current.style.right = '20px'
                 error4.current.style.opacity = '1'
                 setTimeout(() => {
-                   if (error4.current) {
-                     error4.current.style.right = '-600px'
-                    error4.current.style.opacity = '0'
-                   }
+                    if (error4.current) {
+                        error4.current.style.right = '-600px'
+                        error4.current.style.opacity = '0'
+                    }
                 }, 3000)
             } else {
                 AddOrders(sendToCart)
@@ -144,6 +154,80 @@ export default function Backup({ id }) {
 
 
 
+    }
+
+    function sendReview(e) {
+        let name = e.target.previousElementSibling.previousElementSibling.previousElementSibling.children[0]
+        let gmail = e.target.previousElementSibling.previousElementSibling.children[0]
+        let code = data?.code
+        let review = e.target.previousElementSibling.children[0]
+        let point = rating
+        let pack = [name, gmail, review]
+        pack.map((val) => {
+            if (val.value == null || val.value == '') {
+                val.style.border = '1px solid  red'
+            } else {
+                val.style.border = '1px solid #838282'
+            }
+        })
+        if (gmail.value.search(/@gmail\.com$/) == -1) {
+            error5.current.style.right = '20px'
+            error5.current.style.opacity = '1'
+            setTimeout(() => {
+                if (error5.current) {
+                    error5.current.style.right = '-600px'
+                    error5.current.style.opacity = '0'
+                }
+            }, 3000)
+            gmail.style.border = '1px solid red'
+        }
+        if ((name.value !== null || name.value !== '')
+            && (gmail.value !== null || gmail.value !== '')
+            && (review.value !== null || review.value !== '')
+            && (gmail.value.search(/@gmail\.com$/) !== -1)) {
+            const exist = reviewg?.some((s) => s.code == code && s.gmail == gmail.value)
+            if (exist == true) {
+                error6.current.style.right = '20px'
+                error6.current.style.opacity = '1'
+                setTimeout(() => {
+                    if (error6.current) {
+                        error6.current.style.right = '-600px'
+                        error6.current.style.opacity = '0'
+                    }
+                }, 3000)
+            } else {
+                const finalPack = {
+                    name: name.value,
+                    gmail: gmail.value,
+                    code: code,
+                    review: review.value,
+                    point: point
+                }
+                fetch(`https://699dd26283e60a406a478565.mockapi.io/ReviewShop`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+
+                    },
+                    body: JSON.stringify(finalPack)
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            error7.current.style.right = '20px'
+                            error7.current.style.opacity = '1'
+                            setTimeout(() => {
+                                if (error7.current) {
+                                    error7.current.style.right = '-600px'
+                                    error7.current.style.opacity = '0'
+                                }
+                            }, 3000)
+                            setReviewg((prev) => [...prev, finalPack])
+                        }
+                    })
+            }
+        }
+
+
 
     }
     return (
@@ -152,16 +236,20 @@ export default function Backup({ id }) {
                 <div ref={loading} className='w-[100%] h-[100vh] z-[5115595959]  bg-[white] fixed top-0 right-0 flex justify-center items-center'>
                     <img className='w-[70px] h-[70px]' src="/loading2.svg" alt="" />
                 </div>
-                <div ref={error} className='w-[250px]  duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#f90c4c]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-300px] text-[18px] text-[black]'>Out of Stock</div>
-                <div
-                    ref={error3}
-                    className=" p-5 min-w-[250px] duration-500  h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#06bb15] z-50 border-b-5 flex justify-center items-center right-[-400px] text-[18px] text-[black] pointer-events-auto"
-                >
+                <div ref={error} className='w-[250px]  duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#f90c4c]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-600px] text-[18px] text-[black]'>Out of Stock</div>
+                <div ref={error5} className='w-[250px]  duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#f90c4c]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-600px] text-[18px] text-[black]'> Gmail is not correct</div>
+                <div ref={error6} className='w-[400px]  duration-500 h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#f90c4c]  z-[10000000000000] border-b-5 flex justify-center items-center right-[-600px] text-[18px] text-[black]'>You have submitted your review before</div>
+                <div ref={error3} className=" p-5 min-w-[250px] duration-500  h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#06bb15] z-50 border-b-5 flex justify-center items-center right-[-600px] text-[18px] text-[black] pointer-events-auto">
                     <div className="h-[100%] text-[20pxpx] flex justify-center items-center">
                         Added Successfully check
                     </div>
                     <div className=" h-[100%] flex justify-center items-center">
                         <Link className=" text-[blue] text-[px] pl-1.5 underline cursor-pointer relative z-10" href={'./../cart'}>Here</Link>
+                    </div>
+                </div>
+                <div ref={error7} className=" p-5 min-w-[250px] duration-500  h-[70px] rounded-[10px] bg-[white] fixed top-[20px] border-2 border-[#06bb15] z-50 border-b-5 flex justify-center items-center right-[-600px] text-[18px] text-[black] pointer-events-auto">
+                    <div className="h-[100%] text-[20pxpx] flex justify-center items-center">
+                        Your review has been Successfully submitted
                     </div>
                 </div>
 
@@ -441,24 +529,33 @@ export default function Backup({ id }) {
                         </div>
                         <div style={pagination == 3 ? { display: 'flex' } : { display: 'none' }} className=" text-[black] w-[100%] h-[100%] bg-[white] justify-center items-center flex-wrap rounded-2xl ">
                             <div className="w-[100%] min-h-[30vh]">
-                                <div className="w-[95%]  min-h-[25vh] mx-auto mt-2">
-                                    <div className="w-[100%] h-[70px]  flex justify-start items-center">
-                                        <div className="h-[100%] w-[80px]  flex justify-center items-center">
-                                            <div className="w-[50px] h-[50px] border border-[#eeecec] rounded-xl flex justify-center items-center icofont-ui-user bg-[#dde4fa] text-[white] text-[20px]"></div>
-                                        </div>
-                                        <div className="min-w-[150px] h-[100%]  flex justify-center content-center flex-wrap">
-                                            <div className="w-[100%] h-[38%] text-[16px] font-[600] flex justify-start items-center">ali salimi</div>
-                                            <div className="w-[100%] h-[38%]  flex justify-start items-center">
-                                                <span className="icofont-star text-[#ffd783]"></span>
-                                                <span className="icofont-star text-[#ffd783]"></span>
-                                                <span className="icofont-star text-[#ffd783]"></span>
-                                                <span className="icofont-star text-[#ffd783]"></span>
-                                                <span className="icofont-star text-[#ffd783]"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="w-[100%] min-h-[90px] text-[13px] border-b border-[#aaa9a9] p-4 font-[500] text-[#414141]">this product  in insanely perfec Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas distinctio quod inventore nulla nostrum nam? Totam, voluptatum error animi id reprehenderit omnis architecto? Est minima quidem veritatis odit enim quis a placeat. Laborum dolores quis odit culpa, ipsa ab quibusdam, molestiae repellat cuiis beatae sit voluptas! Facere ducimus cupiditate eos hic accusantium recusandae, consequatur, esse placeat consequuntur, eius minus adipisci rerum distinctio tempore veritatis vero nisi odit voluptatibus nulla accusamus. Culpa ducimus repellat sapiente, dolorem vero, autem magni non quibusdam et quos ullam.</div>
-                                </div>
+                                {reviewg?.map((val, i) => {
+                                    if (val.code == data.code) {
+                                        return (
+                                            <React.Fragment key={i}>
+                                                <div className="w-[95%]  min-h-[25vh] mx-auto mt-2">
+                                                    <div className="w-[100%] h-[70px]  flex justify-start items-center">
+                                                        <div className="h-[100%] w-[80px]  flex justify-center items-center">
+                                                            <div className="w-[50px] h-[50px] border border-[#eeecec] rounded-xl flex justify-center items-center icofont-ui-user bg-[#dde4fa] text-[white] text-[20px]"></div>
+                                                        </div>
+                                                        <div className="min-w-[150px] h-[100%]  flex justify-center content-center flex-wrap">
+                                                            <div className="w-[100%] h-[38%] text-[16px] font-[600] flex justify-start items-center">{val.name}</div>
+                                                            <div className="w-[100%] h-[38%]  flex justify-start items-center">
+                                                                <span style={val.point >= 1 ? { color: '#ffd783' } : { color: 'grey' }} className="icofont-star text-[#ffd783]"></span>
+                                                                <span style={val.point >= 2 ? { color: '#ffd783' } : { color: 'grey' }} className="icofont-star text-[#ffd783]"></span>
+                                                                <span style={val.point >= 3 ? { color: '#ffd783' } : { color: 'grey' }} className="icofont-star text-[#ffd783]"></span>
+                                                                <span style={val.point >= 4 ? { color: '#ffd783' } : { color: 'grey' }} className="icofont-star text-[#ffd783]"></span>
+                                                                <span style={val.point >= 5 ? { color: '#ffd783' } : { color: 'grey' }} className="icofont-star text-[#ffd783]"></span>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="w-[100%] min-h-[90px] text-[13px] border-b border-[#aaa9a9] p-4 font-[500] text-[#414141]">{val.review} </div>
+                                                </div>
+                                            </React.Fragment>
+                                        )
+                                    }
+                                })}
                             </div>
                             <div className="w-[100%] h-[70vh]">
                                 <div className="mt-1.5 p-4 w-[95%] h-[35px]  mx-auto flex justify-start items-center text-[20px] font-[600]">
@@ -489,7 +586,7 @@ export default function Backup({ id }) {
                                     <div className="w-[100%] h-[180px]">
                                         <textarea placeholder="enter your comment" className="w-[100%] h-[100%]  pl-2  border border-[#838282] rounded-xl focus:outline-0"></textarea>
                                     </div>
-                                    <div className="w-[80px] h-[40px] text-[white]  mt-2 rounded-xl bg-[#3a4ee5] flex justify-center items-center">Submit</div>
+                                    <div onClick={sendReview} className="w-[80px] h-[40px] text-[white]  mt-2 rounded-xl bg-[#3a4ee5] flex justify-center items-center">Submit</div>
                                 </div>
                             </div>
                         </div>
